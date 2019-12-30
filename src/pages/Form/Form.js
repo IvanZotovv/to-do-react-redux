@@ -2,9 +2,9 @@ import React,{Component} from "react";
 import './Form.scss'
 import { Button, Input } from 'antd';
 import { connect } from 'react-redux'
-import {ModalBlock} from "./ModalBlock";
-import {AlphabetToEng} from './alphabet'
-import {ListItems,triggerChange} from './ListOfItem/List';
+import {ModalBlock} from "../ModalBlock";
+import {AlphabetToEng} from '../alphabet'
+import {ListItems} from '../ListOfItem/List';
 
 
 
@@ -23,20 +23,18 @@ class FormPage extends Component {
 
 
     addInput = () => {
-        console.log(triggerChange())
-
         const letters = this.trackInput.state.value
-        const translate = letters.split('').map(char => {
+        let translate = letters.split('').map(char => {
             return AlphabetToEng()[char] || char
         }).join('')
-
 
         if (this.state.length < 10 && this.state.length > 0) {
             this.props.addThisInput(translate)
         }
 
         this.setState({
-            isEdit: false
+            isEdit: false,
+            length: 0,
         })
 
         this.trackInput.state.value = ''
